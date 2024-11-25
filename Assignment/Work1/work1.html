@@ -38,7 +38,7 @@
     <form id="quizForm" class="container p-4 border rounded" style="display: none; background-color: #f8f9fa;">
         <div id="quizContainer"></div>
         <div class="text-center mt-4">
-            <button type="button" id="submitQuiz" class="btn btn-success btn-lg">ส่งคำตอบ</button>
+            <button type="button" id="submitQuiz" class="btn btn-success btn-lg" style="display: none;">ส่งคำตอบ</button>
         </div>
     </form>
     
@@ -55,20 +55,16 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
-            // Hide the quiz form initially
             $("#quizForm").hide();
-
-            // Start quiz button functionality
             $("#startQuiz").click(function () {
-                $("#startQuizContainer").hide(); // Hide the start button
-                $("#quizForm").fadeIn(); // Show the quiz form
+                $("#startQuizContainer").hide(); 
+                $("#quizForm").fadeIn();
             });
 
-            // Load questions from JSON file
+            // Load JSON file
             $.getJSON("./quiz.json", function (questions) {
                 const quizContainer = $("#quizContainer");
 
-                // Generate questions dynamically
                 questions.forEach((q, index) => {
                     const questionBlock = $(`
                         <div class="question">
@@ -85,27 +81,33 @@
                     `);
                     quizContainer.append(questionBlock);
                 });
-            });
 
-            $("#submitQuiz").click(function () {
-                const answers = [];
-                const correctAnswers = [];
-                let score = 0;
-                let unansweredCount = 0;
+                const checkAnswersButton = $(`
+                    <div class="text-center mt-4" id="checkAnswersContainer" style="display: none;">
+                        <button type="button" id="checkAnswers" class="btn btn-primary btn-lg">ตรวจคำตอบ</button>
+                    </div>
+                `);
+                quizContainer.after(checkAnswersButton);
 
-                // Clear previous warnings and results
-                $("#warning").hide().find("#warningMessage").html("");
-                $("#result").hide().find(".card-body").html("");
+                $("input[type=radio]").on("change", function () {
+                    const totalQuestions = questions.length;
+                    const answeredQuestions = $("input[type=radio]:checked").length;
 
-                // Fetch and process quiz questions
-                $.getJSON("quiz.json", function (questions) {
+                    if (answeredQuestions === totalQuestions) {
+                        $("#checkAnswersContainer").fadeIn();
+                    } else {
+                        $("#checkAnswersContainer").fadeOut();
+                    }
+                });
+
+                $("#checkAnswers").click(function () {
+                    let score = 0;
+                    const answers = [];
+                    const correctAnswers = [];
+
                     questions.forEach((q, index) => {
                         const userAnswer = $(`input[name="question${index}"]:checked`).val();
                         const correctAnswer = q.answer;
-
-                        if (!userAnswer) {
-                            unansweredCount++;
-                        }
 
                         answers.push(userAnswer || "No Answer");
                         correctAnswers.push(correctAnswer);
@@ -115,11 +117,9 @@
                         }
                     });
 
-                    // Display result
                     const totalQuestions = questions.length;
                     let resultMessage = `
                         <p class="fs-5">คะแนนของคุณ: <strong>${score} / ${totalQuestions}</strong></p>
-                        <p>คำถามที่ไม่ได้ตอบ: <strong>${unansweredCount}</strong></p>
                         <ul class="list-group">
                             ${questions.map((q, i) => `
                                 <li class="list-group-item">
@@ -134,22 +134,14 @@
 
                     $("#result .card-body").html(resultMessage);
                     $("#result").fadeIn();
-
-                    // Show warning for unanswered questions
-                    if (unansweredCount > 0) {
-                        $("#warningMessage").html(`คุณมีคำถามที่ยังไม่ได้ตอบ ${unansweredCount} คำถาม`);
-                        $("#warning").fadeIn();
-                    }
-
-                    // Scroll to the result section
+                    
                     $("html, body").animate({
-                        scrollTop: $("#result").offset().top - 20 // Offset for some padding
-                    }, 800); // Duration of scrolling in milliseconds
+                        scrollTop: $("#result").offset().top - 20
+                    }, 800);
                 });
             });
-
-
         });
+
 
     </script>
 </body>
