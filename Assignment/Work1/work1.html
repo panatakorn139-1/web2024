@@ -35,7 +35,7 @@
         <button id="startQuiz" class="btn btn-primary btn-lg" >เริ่มทำแบบทดสอบ</button>
     </div>
     
-    <form id="quizForm" class="container p-4 border rounded" style="display: none; background-color: #f8f9fa;">
+    <form id="quizForm" class="container p-4 border rounded" style="display: none; background-color: #f8f9fa; margin-bottom: 20px;">
         <div id="quizContainer"></div>
         <div class="text-center mt-4">
             <button type="button" id="submitQuiz" class="btn btn-success btn-lg" style="display: none;">ส่งคำตอบ</button>
@@ -134,7 +134,7 @@
 
                     $("#result .card-body").html(resultMessage);
                     $("#result").fadeIn();
-                    
+
                     $("html, body").animate({
                         scrollTop: $("#result").offset().top - 20
                     }, 800);
