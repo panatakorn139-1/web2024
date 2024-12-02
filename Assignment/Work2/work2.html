@@ -6,22 +6,40 @@
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@3.7.4/dist/vuetify.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/vuetify@3.7.4/dist/vuetify.min.js"></script>
-    <title>My first Vue page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Online Quiz</title>
     <style>
+        * {
+            font-family: "Kanit", sans-serif;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         #app {
-            display: inline-block;
-            padding: 10px;
-            font-size: x-large;
-            background-color: lightgreen;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .text-success {
+            color: green;
+        }
+
+        .text-error {
+            color: red;
         }
     </style>
 </head>
 
 <body>
-    <div id="app">
-        <h1>แบบทดสอบ</h1>
-        {{ message }}
-    </div>
+    <div id="app"></div>
     <script src="./vue.js"></script>
 </body>
 
