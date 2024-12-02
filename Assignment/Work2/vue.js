@@ -46,7 +46,7 @@ const app = createApp({
     template: `
         <v-app>
             <v-main>
-                <v-container>
+                <v-container fluid>
                     <v-row justify="center" v-if="step === 'start'">
                         <v-col cols="12" sm="8" md="6" class="text-center">
                             <h1 class="mb-6">แบบทดสอบ</h1>
@@ -55,14 +55,14 @@ const app = createApp({
                     </v-row>
 
                     <v-row justify="center" v-else-if="step === 'quiz'">
-                        <v-col cols="12" sm="8" md="6">
+                        <v-col cols="12" sm="10" md="8">
                             <h2 class="text-center mb-6">ตอบคำถามให้ครบทั้งหมด</h2>
                             <v-card class="mb-4" v-for="(question, index) in qlist" :key="index" outlined>
                                 <v-card-title>ข้อที่ {{ index + 1 }}: {{ question.question }}</v-card-title>
                                 <v-card-text>
                                     <v-radio-group
                                         v-model="selectedAnswers[index]"
-                                        row
+                                        column
                                     >
                                         <v-radio
                                             v-for="option in question.options"
@@ -86,7 +86,7 @@ const app = createApp({
                     </v-row>
 
                     <v-row justify="center" v-else-if="step === 'result'">
-                        <v-col cols="12" sm="8" md="6" class="text-center">
+                        <v-col cols="12" sm="10" md="8" class="text-center">
                             <h1 class="mb-4">ผลการทดสอบ</h1>
                             <p>คุณได้คะแนน <strong>{{ score }}</strong> จาก {{ qlist.length }}</p>
                             <v-card class="mb-4" v-for="(question, index) in qlist" :key="index" outlined>
