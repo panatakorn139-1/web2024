@@ -49,14 +49,14 @@ const app = createApp({
                 <v-container>
                     <v-row justify="center" v-if="step === 'start'">
                         <v-col cols="12" sm="8" md="6" class="text-center">
-                            <h1 class="mb-6">แบบทดสอบออนไลน์</h1>
+                            <h1 class="mb-6">แบบทดสอบ</h1>
                             <v-btn color="primary" large @click="startQuiz">เริ่มทำแบบทดสอบ</v-btn>
                         </v-col>
                     </v-row>
 
                     <v-row justify="center" v-else-if="step === 'quiz'">
                         <v-col cols="12" sm="8" md="6">
-                            <h2 class="text-center mb-6">ตอบคำถามทั้งหมด</h2>
+                            <h2 class="text-center mb-6">ตอบคำถามให้ครบทั้งหมด</h2>
                             <v-card class="mb-4" v-for="(question, index) in qlist" :key="index" outlined>
                                 <v-card-title>ข้อที่ {{ index + 1 }}: {{ question.question }}</v-card-title>
                                 <v-card-text>
