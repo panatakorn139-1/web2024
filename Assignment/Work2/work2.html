@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -15,6 +16,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="app">
         <h1>แบบทดสอบ</h1>
@@ -35,18 +37,19 @@
                     qlist: []
                 }
             },
-            mounted(){
+            mounted() {
                 this.load_data();
             },
-            methods : {
-               async load_data(){
-                  var res = await fetch("quiz.json");
-                  this.qlist = await res.json();
-               }
+            methods: {
+                async load_data() {
+                    var res = await fetch("quiz.json");
+                    this.qlist = await res.json();
+                }
             }
-            
+
         })
         app.use(vuetify).mount('#app')
     </script>
 </body>
+
 </html>
