@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Introduction VR-360</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+        <a-sky color="#ECECEC"></a-sky>
+        <a-asset-item id="my-model" src="./assets/model/Garou/scene.gltf"></a-asset-item>
+        <a-entity gltf-model="#my-model" position="-2.05997 0 -3"></a-entity>
+        <a-camera position="0 1.6 0">
+        </a-camera>
+    </a-scene>
+    <script>window.AFRAME_SAMPLE_ASSETS_ROOT = "./sample-assets/";</script>
+</body>
+</html>
