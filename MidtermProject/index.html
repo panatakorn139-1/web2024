@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive VR Car Showroom</title>
+
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-physics-system@latest/dist/aframe-physics-system.min.js"></script>
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: "Bebas Neue", serif;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <a-scene physics>
+        <!-- Font -->
+        <a-assets>
+            <a-asset-item id="bebasFont" src="./assets/styles/BebasNeue-Regular.ttf"></a-asset-item>
+        </a-assets>
+
+        <!-- Floor -->
+        <a-plane id="floor" static-body="sphereRadius: NaN" color="#F5EDE0" repeat="100 100" height="1000" width="1000" rotation="-90 0 0"
+            position="0 0 0">
+        </a-plane>
+        <!-- Ambient Light for overall brightness -->
+        <a-entity id="ambientLight" light="type: ambient; intensity: 0.4; color: #ffffff"></a-entity>
+
+        <!-- Directional Light for parallel rays -->
+        <a-entity id="directionalLight" light="type: directional; intensity: 0.5; castShadow: true; color: #f0e5d8"
+            position="-10 15 5" target="#floor"></a-entity>
+        <!-- Sky -->
+        <a-sky src="./assets/textures/sky.jpg"></a-sky>
+
+        <!-- Assets -->
+        <a-assets>
+            <a-asset-item id="ModelGra" src="./assets/models/Thisisit.glb"></a-asset-item>
+            <a-asset-item id="bugatti" src="./assets/models/bugatti.glb"></a-asset-item>
+            <a-asset-item id="GT4" src="./assets/models/gt4.glb"></a-asset-item>
+            <a-asset-item id="Skyline" src="./assets/models/nissan_skyline.glb"></a-asset-item>
+            <a-asset-item id="GTR" src="./assets/models/nissan_gtr.glb"></a-asset-item>
+            <a-asset-item id="Michelin" src="./assets/models/michelin_bibendum.glb"></a-asset-item>
+            <a-asset-item id="Glass-Table" src="./assets/models/glass_table.glb"></a-asset-item>
+            <a-asset-item id="Water_dispenser" src="./assets/models/water_dispenser.glb"></a-asset-item>
+            <a-asset-item id="Celing_Chandelier" src="./assets/models/ceiling_chandelier.glb"></a-asset-item>
+            <a-asset-item id="Flowervase" src="./assets/models/flowervase.glb"></a-asset-item>
+            <audio id="car-sound" src="./assets/sounds/Bugatti.mp3"></audio>
+            <audio id="car-sound2" src="./assets/sounds/gt4.mp3"></audio>
+            <audio id="car-sound3" src="./assets/sounds/Skyline.mp3"></audio>
+            <audio id="car-sound4" src="./assets/sounds/GTR.mp3"></audio>
+        </a-assets>
+
+        <a-entity id="revo1" gltf-model="./assets/models/revo.glb" position="1.79499 -0.09197 -4.93268"
+            rotation="0 90 0" scale="2.5 2.5 2.5">
+        </a-entity>
+        <a-entity id="fortuner" gltf-model="./assets/models/fortuner.glb" position="7.77534 -0.15831 -11.56673"
+            rotation="0 90 0" scale="0.0725 0.0725 0.0725">
+        </a-entity>
+        <a-entity id="revo3" gltf-model="./assets/models/revo.glb" position="1.79499 -0.09197 -23.865" rotation="0 90 0"
+            scale="2.5 2.5 2.5">
+        </a-entity>
+
+        <!-- Rotated Model -->
+        <a-entity gltf-model="#ModelGra" position="-30 0.09 0" rotation="0 0 0" scale="1 1 1"></a-entity>
+
+        <!-- ============================================================================================================== -->
+        <!-- CAR 1 -->
+        <!-- Wrapper สำหรับโมเดล -->
+        <a-entity id="model-1-wrapper" position="-16.30813 0.01788 -8.157">
+            <a-entity id="model-1" gltf-model="#bugatti" position="0 0 0" rotation="0 250 0" scale="250 250 250">
+            </a-entity>
+        </a-entity>
+        <a-entity id="model-1-text" position="-14.70534 3.63239 -7.56736" rotation="0 250.00000000000003 0"
+            scale="5 5 5" text="align: center; color: white; value: Bugatti; width: 4.5">
+        </a-entity>
+
+        <!-- CAR 2 -->
+        <!-- Wrapper สำหรับโมเดล -->
+        <a-entity id="model-2-wrapper" position="-16.308 0.018 -26.35323">
+            <a-entity id="model-2" gltf-model="#GT4" position="0 0 0" rotation="0 250 0" scale="250 250 250">
+            </a-entity>
+        </a-entity>
+        <a-entity id="model-2-text" position="-14.70534 3.95539 -25.81546" rotation="0 250.00000000000003 0"
+            scale="5 5 5" text="align: center; color: white; value: GT4; width: 4.5">
+        </a-entity>
+
+        <!-- CAR 3 -->
+        <!-- Wrapper สำหรับโมเดล -->
+        <a-entity id="model-3-wrapper" rotation="0 -95.38544077558431 0" position="-2.15642 0.018 -62.71445">
+            <a-entity id="model-3" gltf-model="#Skyline" position="1.23638 0 -0.26052" rotation="0 69.27288926249705 0"
+                scale="250 250 250">
+            </a-entity>
+        </a-entity>
+        <a-entity id="model-3-text" position="-2.07347 4.24511 -61.75949"
+            rotation="-2.7198306534860177 -27.071109904341135 1.769866629159113" scale="5 5 5"
+            text="align: center; color: white; value: Skyline; width: 4.5">
+        </a-entity>
+
+        <!-- CAR 4 -->
+        <!-- Wrapper สำหรับโมเดล -->
+        <a-entity id="model-4-wrapper" rotation="0 76.29964366198146 0" position="-2.13029 0 -41.64101">
+            <a-entity id="model-4" gltf-model="#GTR" position="1.236 0 -0.261" rotation="0 69.273 0"
+                scale="250 250 250">
+            </a-entity>
+        </a-entity>
+        <a-entity id="model-4-text" position="-2.77636 4.24511 -41.44525"
+            rotation="-2.7198306534860177 130.65901447501832 1.769866629159113" scale="5 5 5"
+            text="align: center; color: white; value: GTR; width: 4.5">
+        </a-entity>
+
+        <!-- Michelin -->
+        <a-entity id="michelin-wrapper" rotation="0 76.3 0" position="-5.35417 0 -41.641">
+            <a-entity id="michelin-model" gltf-model="#Michelin" position="35.81969 5.8168 3.71528" rotation="0 138.02037622685916 0"
+                scale="3 3 3">
+            </a-entity>
+        </a-entity>
+
+        <!-- Glass Table -->
+        <a-entity id="glass-table-wrapper" rotation="0 76.3 0" position="-5.35417 0 -41.641">
+            <a-entity id="glass-table-model" gltf-model="#Glass-Table" position="3.51856 0.11631 -21.2831" rotation="0 103.75864599362616 0"
+                scale="1.6 1.6 1.6">
+            </a-entity>
+        </a-entity>
+
+        <!-- Celing Chandelier -->
+        <a-entity id="ceiling-chandelier-wrapper" scale="4 4 4" rotation="0 76.3 0" position="-5.354 -1.76789 -41.641">
+            <a-entity id="ceiling-chandelier-model" gltf-model="#Celing_Chandelier" position="1.1846 2.14477 -4.36069" rotation="0 103.75864599362616 0"
+                scale="1.6 1.6 1.6">
+            </a-entity>
+        </a-entity>
+
+        <!-- Water Dispenser -->
+        <a-entity id="water-dispenser-wrapper" rotation="0 76.3 0" position="-5.35417 0 -41.641">
+            <a-entity id="water-dispenser-model" gltf-model="#Water_dispenser" position="7.21247 0.11631 -26.35886" rotation="0 -73.26124847440272 0"
+                scale="4 4 4">
+            </a-entity>
+        </a-entity>
+
+        <!-- Flowervase -->
+        <a-entity id="flowervase-wrapper" rotation="0 76.3 0" position="-5.35417 0 -41.641">
+            <a-entity id="flowervase-model" gltf-model="#Flowervase" position="16.92694 -0.05988 -13.98165" rotation="0 -73.261 0"
+                scale="0.2 0.2 0.2">
+            </a-entity>
+        </a-entity>
+
+        <!-- Buttons -->
+        <!-- Button 1: Toggle Sound -->
+        <a-entity id="sound-button" geometry="primitive: plane; height: 0.5; width: 2"
+            material="color: #FF5722; shader: flat" position="-16 1.5 -2.59023"
+            text="value: Play Sound; align: center; color: white" rotation="0 250.00000000000003 0" scale="1.5 1.5 1.5">
+        </a-entity>
+
+        <!-- Button 2: Toggle TEXT -->
+        <a-entity geometry="primitive: plane; height: 0.5; width: 2" material="color: #4CAF50"
+            position="-16 2.5 -2.59023" rotation="0 250.00000000000003 0"
+            text="value: Click Me; align: center; color: white" id="show-text-button"
+            event-set__mouseenter="material.color: #66BB6A" event-set__mouseleave="material.color: #4CAF50"
+            scale="1.5 1.5 1.5">
+        </a-entity>
+        <!--ตัวหนังสือ-->
+        <a-text value="Hello Ikkyu" position="-13.56339 2.77882 -15.19892" width="4" color="#FF5722" id="hello-text"
+            visible="false" rotation="0 250.00000000000003 0">
+        </a-text>
+
+        <!-- Button 3: Toggle Model Rotation -->
+        <a-entity geometry="primitive: plane; height: 0.5; width: 2" material="color: #3F51B5"
+            position="-16 3.5 -2.58292" rotation="0 250.00000000000003 0"
+            text="value: Rotate Car; align: center; color: white" id="rotate-model-button"
+            event-set__mouseenter="material.color: #5C6BC0" event-set__mouseleave="material.color: #3F51B5"
+            scale="1.5 1.5 1.5">
+        </a-entity>
+
+
+        <!-- Buttons -->
+        <!-- Button 1: Toggle Sound -->
+        <a-entity id="sound-button-2" geometry="primitive: plane; height: 0.5; width: 2"
+            material="color: #FF5722; shader: flat" position="-16 1.5 -21.3998"
+            text="value: Play Sound; align: center; color: white" rotation="0 250 0" scale="1.5 1.5 1.5">
+        </a-entity>
+
+        <!-- Button 2: Toggle TEXT -->
+        <a-entity id="show-text-button-2" geometry="primitive: plane; height: 0.5; width: 2" material="color: #4CAF50"
+            position="-16 2.5 -21.42986" rotation="0 250.00000000000003 0"
+            text="value: Click Me; align: center; color: white" event-set__mouseenter="material.color: #66BB6A"
+            event-set__mouseleave="material.color: #4CAF50" scale="1.5 1.5 1.5">
+        </a-entity>
+        <!--ตัวหนังสือ-->
+        <a-text id="hello-text-2" value="Hello Ikkyu" position="-13.56339 2.77882 -33.75753" width="4" color="#FF5722"
+            visible="false" rotation="0 250.00000000000003 0">
+        </a-text>
+
+        <!-- Button 3: Toggle Model Rotation -->
+        <a-entity id="rotate-model-button-2" geometry="primitive: plane; height: 0.5; width: 2"
+            material="color: #3F51B5" position="-16 3.5 -21.43001" rotation="0 250 0"
+            text="value: Rotate Car; align: center; color: white" event-set__mouseenter="material.color: #5C6BC0"
+            event-set__mouseleave="material.color: #3F51B5" scale="1.5 1.5 1.5">
+        </a-entity>
+
+
+
+        <!-- Buttons -->
+        <!-- Button 1: Toggle Sound -->
+        <a-entity id="sound-button-3" geometry="primitive: plane; height: 0.5; width: 2"
+            material="color: #FF5722; shader: flat" position="-6.993 1.5 -62.039"
+            text="value: Play Sound; align: center; color: white" rotation="0 -10.564 0" scale="1.5 1.5 1.5">
+        </a-entity>
+
+        <!-- Button 2: Toggle TEXT -->
+        <a-entity id="show-text-button-3" geometry="primitive: plane; height: 0.5; width: 2" material="color: #4CAF50"
+            position="-6.993 2.70772 -62.039" rotation="0 -10.564 0" text="value: Click Me; align: center; color: white"
+            event-set__mouseenter="material.color: #66BB6A" event-set__mouseleave="material.color: #4CAF50"
+            scale="1.5 1.5 1.5">
+        </a-entity>
+        <!--ตัวหนังสือ-->
+        <a-text id="hello-text-3" value="Hello Ikkyu" position="0.6473 2.77882 -58.69814" width="4" color="#FF5722"
+            visible="false" rotation="0 -29.75140646996313 0">
+        </a-text>
+
+        <!-- Button 3: Toggle Model Rotation -->
+        <a-entity id="rotate-model-button-3" geometry="primitive: plane; height: 0.5; width: 2"
+            material="color: #3F51B5" position="-6.993 3.84596 -62.039" rotation="0 -10.564 0"
+            text="value: Rotate Car; align: center; color: white" event-set__mouseenter="material.color: #5C6BC0"
+            event-set__mouseleave="material.color: #3F51B5" scale="1.5 1.5 1.5">
+        </a-entity>
+
+
+        <!-- Buttons -->
+        <!-- Button 1: Toggle Sound -->
+        <a-entity id="sound-button-4" geometry="primitive: plane; height: 0.5; width: 2"
+            material="color: #FF5722; shader: flat" position="-6.758 1.5 -45.839"
+            text="value: Play Sound; align: center; color: white" rotation="0 134.597 0" scale="1.5 1.5 1.5">
+        </a-entity>
+
+        <!-- Button 2: Toggle TEXT -->
+        <a-entity id="show-text-button-4" geometry="primitive: plane; height: 0.5; width: 2" material="color: #4CAF50"
+            position="-6.758 2.70772 -45.839" rotation="0 134.597 0" text="value: Click Me; align: center; color: white"
+            event-set__mouseenter="material.color: #66BB6A" event-set__mouseleave="material.color: #4CAF50"
+            scale="1.5 1.5 1.5">
+        </a-entity>
+        <!--ตัวหนังสือ-->
+        <a-text id="hello-text-4" value="Hello Ikkyu" position="4.22249 2.77882 -39.40703" width="4" color="#FF5722"
+            visible="false" rotation="0 148.04484581046802 0">
+        </a-text>
+
+        <!-- Button 3: Toggle Model Rotation -->
+        <a-entity id="rotate-model-button-4" geometry="primitive: plane; height: 0.5; width: 2"
+            material="color: #3F51B5" position="-6.758 3.84596 -45.839" rotation="0 134.597 0"
+            text="value: Rotate Car; align: center; color: white" event-set__mouseenter="material.color: #5C6BC0"
+            event-set__mouseleave="material.color: #3F51B5" scale="1.5 1.5 1.5">
+        </a-entity>
+        <!-- ============================================================================================================== -->
+
+        <!-- Add an image in your scene -->
+        <a-image id="p_pop" src="./assets/images/p_pop.png" position="-18.24907 3.519 -62.538" rotation="0 89.754 0" scale="6 6 6">
+        </a-image>
+
+        <!-- Camera and Controls -->
+        <a-entity camera wasd-controls="acceleration: 60" look-controls="pointerLockEnabled: true" position="0 3.5 0">
+            <a-cursor></a-cursor>
+        </a-entity>
+
+    </a-scene>
+
+    <script src="./assets/script/car1.js"></script>
+    <script src="./assets/script/car2.js"></script>
+    <script src="./assets/script/car3.js"></script>
+    <script src="./assets/script/car4.js"></script>
+
+</body>
+
+</html>
